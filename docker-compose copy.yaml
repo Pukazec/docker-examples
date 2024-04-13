@@ -1,0 +1,31 @@
+version: "3"
+services:
+  sonar-db:
+    image: postgres:latest
+    volumes:
+      - sonarqube_data:/var/lib/postgresql/data
+    environment:
+      POSTGRESQL_ROOT_USER: root
+      POSTGRESQL_ROOT_PASSWORD: secret
+      POSTGRESQL_USER: sonar
+      POSTGRESQL_PASSWORD: sonar
+      POSTGRESQL_DATABASE: sonar
+    networks:
+      - app-network
+  dsonarcube:
+    image: sonarqube:latest
+    networks:
+      - app-network
+    ports:
+      - 9000:9000
+    environment:
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://sonar-db:5432/sonar 
+      - SONAR_JDBC_USERNAME=sonar 
+      - SONAR_JDBC_PASSWORD=sonar
+
+volumes:
+  sonarqube_data:
+
+networks:
+  app-network:
+    driver: bridge

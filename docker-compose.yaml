@@ -1,0 +1,48 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_USER: algebra_infoeduka
+      MYSQL_PASSWORD: u@k-ZY[4TpHvjK*K
+      MYSQL_DATABASE: infoeduka_algebra_prod
+    command: mysqld --sql_mode=""
+    networks:
+      - app-network
+  php:
+    build:
+      context: .
+      dockerfile: php/Dockerfile
+    volumes:
+      - ../infoeduka-1/:/var/www/html/www.racunarstvo.hr/infoeduka-1/
+      - ../infoeduka-2/:/var/www/html/www.racunarstvo.hr/infoeduka-2/
+    networks:
+      - app-network
+    expose:
+      - 9000
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    volumes:
+      - ../infoeduka-1/:/var/www/html/www.racunarstvo.hr/infoeduka-1/
+      - ../infoeduka-2/:/var/www/html/www.racunarstvo.hr/infoeduka-2/
+    ports:
+      - "80:80"
+      - "81:81"
+    networks:
+      - app-network
+
+volumes:
+  db_data:
+  static:
+
+networks:
+  app-network:
+    driver: bridge
