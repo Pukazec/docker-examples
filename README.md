@@ -1,3 +1,15 @@
+## Exam details
+# Site
+- http://vcsa7.vua.cloud/
+- username: `infoeduka_name`
+- password: `Pa$$w0rd`
+
+# VM
+- username: `student`
+- password `student`
+- root user: `root`
+- password: `centos`
+
 ## Mysql root user
 
 - username: `root`
