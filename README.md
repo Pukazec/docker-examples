@@ -54,3 +54,35 @@ Yes, you can change existing one `- ./algebra.sql:/docker-entrypoint-initdb.d/1.
 ### change running and inspect
   - podman exec web8080 sh -c 'echo "Hello, this is the new content!" > /usr/share/nginx/html/index.html'
   - curl http://localhost:8080
+
+## Lab3
+
+###
+  - https://docs.docker.com/get-started/02_our_app/
+  - git clone https://github.com/docker/getting-started-app.git
+  - VIM
+    - cat 'filename' print content
+    - vim 'filename'
+    - i  -edit file
+    - :wq  -save and exit
+  - podman build -t getting-started .
+  - podman run -dp 127.0.0.1:3000:3000 getting-started
+  - podman push lskvorc/getting-started
+
+### Startup app
+  - Containerfile
+    - FROM rhel7
+    - RUN yum -y update && yum clean all
+    - RUN yum -y install httpd && yum clean all
+    - CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+    - EXPOSE 80
+  - podman build -t myweb:0.0.1 .
+
+## Lab4
+  - podman network create labnet
+  - podman network ls
+  - podman network inspect labnet
+  - podman-compose.yml  -file
+  - sudo dnf install podman-compose
+  - podman-compose up
+  - podman-compose down
