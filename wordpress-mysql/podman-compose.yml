@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+  # Database
+  mysql:
+    image: mysql
+    volumes:
+      - /home/student/mysql:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: student
+      MYSQL_PASSWORD: DB15secure!
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: Password
+    networks:
+      - labnet
+  # Wordpress
+  wordpress:
+    depends_on:
+      - mysql
+    image: wordpress:latest
+    ports:
+      - '8000:80'
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_USER: student
+      WORDPRESS_DB_PASSWORD: DB15secure!
+    networks:
+      - labnet
+networks:
+  labnet:
