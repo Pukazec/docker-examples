@@ -32,3 +32,25 @@ Yes, you can change existing one `- ./algebra.sql:/docker-entrypoint-initdb.d/1.
 
 - Notice the number `1`, this means this script or dump will execute first
 - All dumps and scripts in `docker-entrypoint-initdb.d` will run only once, on container creation
+
+## Lab2
+
+### pull, inspect, start, stop, save, inport, list all
+  - porman pull nginx:latest
+  - podman image incpect nginx
+  - podman run -d -p 8080:80 --name web8080 nginx
+  - podman stop web8080
+  - podman image save -o web8080.tar docker.io/library/nginx:latest
+  - porman load -i web8080.tar
+  - podman ps -a
+
+### modify
+  - podman run -it --name mymodifiedcontainer ubuntu /bin/bash
+  -   apt update && apt install -y nginx
+  -   exit
+  - podman commit mymodifiedcontainer mynewimage
+  - podman run -d --name newcontainer mynewimage
+
+### change running and inspect
+  - podman exec web8080 sh -c 'echo "Hello, this is the new content!" > /usr/share/nginx/html/index.html'
+  - curl http://localhost:8080
