@@ -86,3 +86,6 @@ Yes, you can change existing one `- ./algebra.sql:/docker-entrypoint-initdb.d/1.
   - sudo dnf install podman-compose
   - podman-compose up
   - podman-compose down
+
+run on start
+  -https://www.redhat.com/sysadmin/quadlet-podman
