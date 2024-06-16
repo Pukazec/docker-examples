@@ -89,3 +89,10 @@ Yes, you can change existing one `- ./algebra.sql:/docker-entrypoint-initdb.d/1.
 
 run on start
   -https://www.redhat.com/sysadmin/quadlet-podman
+
+## RH Lab 1
+
+  - oc login -u developer -p developer https://api.ocp4.example.com:6443
+  - oc whoami --show-console
+  - username/password: developer
+  - username/password: admin/redhatocp
