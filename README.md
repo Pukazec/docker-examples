@@ -96,3 +96,8 @@ run on start
   - oc whoami --show-console
   - username/password: developer
   - username/password: admin/redhatocp
+
+### lara
+
+https://github.com/KrzakLara/DocumentationForDevOps2
+https://github.com/KrzakLara/DocumentationForDevOps
